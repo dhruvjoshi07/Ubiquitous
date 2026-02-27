@@ -31,7 +31,7 @@ export async function POST(req: Request) {
 
         // Generate token
         const tokenPayload = {
-            id: role === 'admin' ? (user as any).admin_id : (user as any).teacher_id,
+            id: role === 'admin' ? (user as { admin_id: string }).admin_id : (user as { teacher_id: string }).teacher_id,
             role: role,
             name: user.name,
             email: user.email,

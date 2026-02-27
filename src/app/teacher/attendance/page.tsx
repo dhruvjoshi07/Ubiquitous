@@ -39,7 +39,9 @@ export default function MarkAttendance() {
             if (data.success && data.user) {
                 setTeacherId(data.user.id);
             }
-        } catch { }
+        } catch (e) {
+            console.error(e);
+        }
     };
 
     const fetchSchedules = async (tid: string) => {
@@ -49,7 +51,9 @@ export default function MarkAttendance() {
             if (data.success && data.schedules) {
                 setSchedules(data.schedules);
             }
-        } catch (e) { }
+        } catch (e) {
+            console.error(e);
+        }
     };
 
     const fetchStudentsAndAttendance = async (teacherId: string, date: string, sectionFilter: string) => {
@@ -73,7 +77,7 @@ export default function MarkAttendance() {
 
                 const newState: { [key: string]: 'Present' | 'Absent' } = {};
                 if (Array.isArray(attData)) {
-                    attData.forEach((a: any) => {
+                    attData.forEach((a: { student_id: string; status: 'Present' | 'Absent' }) => {
                         newState[a.student_id] = a.status;
                     });
                 }

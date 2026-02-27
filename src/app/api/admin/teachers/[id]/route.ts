@@ -7,7 +7,7 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
         const { id } = await params;
         const body = await req.json();
 
-        const dataToUpdate: any = {
+        const dataToUpdate: Record<string, string> = {
             name: body.name,
             email: body.email,
             department: body.department,

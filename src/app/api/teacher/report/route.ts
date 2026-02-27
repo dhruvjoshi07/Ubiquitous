@@ -22,10 +22,10 @@ export async function GET(req: Request) {
             }
         });
 
-        const report = students.map(student => {
+        const report = students.map((student: any) => {
             const totalClasses = student.attendance.length;
-            const presentClasses = student.attendance.filter(a => a.status === 'Present').length;
-            const absentClasses = student.attendance.filter(a => a.status === 'Absent').length;
+            const presentClasses = student.attendance.filter((a: any) => a.status === 'Present').length;
+            const absentClasses = student.attendance.filter((a: any) => a.status === 'Absent').length;
             const attendancePercentage = totalClasses === 0 ? 0 : Math.round((presentClasses / totalClasses) * 100);
 
             return {

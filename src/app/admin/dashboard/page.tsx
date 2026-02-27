@@ -32,7 +32,7 @@ export default function AdminDashboard() {
 
     // Ensure leaderboard has at least 3 items to render podium, pad with blanks if needed
     const podium = stats.leaderboard.slice(0, 3);
-    while (podium.length < 3) podium.push({ id: Math.random().toString(), name: '-', roll: '-', percentage: 0 });
+    while (podium.length < 3) podium.push({ id: `empty-${podium.length}`, name: '-', roll: '-', percentage: 0 });
 
     return (
         <div style={{ paddingBottom: '3rem' }}>

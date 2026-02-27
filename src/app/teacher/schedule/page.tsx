@@ -34,7 +34,7 @@ export default function SchedulePage() {
             if (data.success && data.user) {
                 setTeacherId(data.user.id);
             }
-        } catch { }
+        } catch (err) { console.error(err); }
     };
 
     const fetchSchedules = async (tid: string) => {
@@ -45,16 +45,20 @@ export default function SchedulePage() {
             if (data.success) {
                 setSchedules(data.schedules);
             }
-        } catch (err) { }
+        } catch (err) { console.error(err); }
         setLoading(false);
     };
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         fetchContext();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         if (teacherId) fetchSchedules(teacherId);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [teacherId]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -79,6 +83,7 @@ export default function SchedulePage() {
                 alert(data.error);
             }
         } catch (err) {
+            console.error(err);
             alert('Failed to add schedule');
         }
         setSubmitting(false);
@@ -92,6 +97,7 @@ export default function SchedulePage() {
                 setSchedules(schedules.filter(s => s.schedule_id !== id));
             }
         } catch (err) {
+            console.error(err);
             alert('Failed to delete');
         }
     };

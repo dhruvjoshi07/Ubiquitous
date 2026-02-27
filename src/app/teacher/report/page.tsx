@@ -29,7 +29,7 @@ export default function AttendanceReport() {
             if (data.success && data.user) {
                 setTeacherId(data.user.id);
             }
-        } catch { }
+        } catch (e) { console.error(e); }
     };
 
     const fetchReport = async (tid: string) => {
@@ -40,16 +40,20 @@ export default function AttendanceReport() {
             if (data.success) {
                 setReport(data.report);
             }
-        } catch (err) { }
+        } catch (err) { console.error(err); }
         setLoading(false);
     };
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         fetchContext();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         if (teacherId) fetchReport(teacherId);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [teacherId]);
 
     // EXPORT FUNCTIONALITY ---------------------------------
@@ -57,7 +61,7 @@ export default function AttendanceReport() {
         const doc = new jsPDF();
         doc.text("Professional Attendance Report - Ubiquitous", 14, 15);
         const tableColumn = ["Roll No", "Student Name", "Total", "Present", "Absent", "Percentage"];
-        const tableRows: any[] = [];
+        const tableRows: (string | number)[][] = [];
         report.forEach(r => {
             const rowData = [r.roll_number, r.name, r.totalClasses, r.presentClasses, r.absentClasses, `${r.attendancePercentage}%`];
             tableRows.push(rowData);

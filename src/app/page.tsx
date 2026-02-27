@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, ShieldCheck, Zap, BarChart, Globe, Cpu, Users, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, ShieldCheck, BarChart, Cpu, Users, ChevronRight, CheckCircle2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 export default function LandingPage() {
@@ -204,7 +204,7 @@ export default function LandingPage() {
         <div style={{ maxWidth: '1000px', margin: '0 auto', background: 'linear-gradient(135deg, #1e1b4b, #312e81)', borderRadius: '32px', padding: '4rem 2rem', textAlign: 'center', border: '1px solid rgba(79, 70, 229, 0.3)', boxShadow: '0 20px 40px rgba(0,0,0,0.5)', overflow: 'hidden', position: 'relative' }}>
           <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'url(/bg.png)', backgroundSize: 'cover', opacity: 0.1, mixBlendMode: 'overlay' }}></div>
           <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.5rem)', fontWeight: 800, color: '#fff', marginBottom: '1.5rem', position: 'relative', zIndex: 2 }}>Ready to transform your campus?</h2>
-          <p style={{ color: '#a5b4fc', fontSize: '1.1rem', marginBottom: '2.5rem', maxWidth: '500px', margin: '0 auto 2.5rem', position: 'relative', zIndex: 2 }}>Join the world's most elite universities powered by the Ubiquitous Engine.</p>
+          <p style={{ color: '#a5b4fc', fontSize: '1.1rem', marginBottom: '2.5rem', maxWidth: '500px', margin: '0 auto 2.5rem', position: 'relative', zIndex: 2 }}>Join the world&apos;s most elite universities powered by the Ubiquitous Engine.</p>
           <Link href="/login" style={{
             background: '#fff', color: '#1e1b4b', padding: '1.2rem 3rem', borderRadius: '30px', fontWeight: 800, fontSize: '1.1rem',
             display: 'inline-flex', alignItems: 'center', gap: '0.5rem', transition: 'all 0.3s', position: 'relative', zIndex: 2

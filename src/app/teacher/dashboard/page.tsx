@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { motion } from 'framer-motion';
 import { AlertTriangle, Medal, Star, MoreVertical, BookOpen, Clock, Download, ChevronDown } from 'lucide-react';
 
@@ -9,9 +9,9 @@ interface DashboardStats {
     totalStudents: number;
     presentToday: number;
     absentToday: number;
-    chartData: any[];
-    leaderboard: any[];
-    riskyStudents: any[];
+    chartData: { date: string; present: number; absent: number }[];
+    leaderboard: { id: string; name: string; roll: string; percentage: number; total: number }[];
+    riskyStudents: { id: string; name: string; roll: string; percentage: number; total: number; present: number }[];
 }
 
 export default function TeacherDashboard() {
@@ -29,12 +29,14 @@ export default function TeacherDashboard() {
                     setStats(data.stats);
                 }
             }
-        } catch (err) { }
+        } catch (err) { console.error(err); }
         setLoading(false);
     };
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         fetchDashboardStats();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (loading || !stats) {

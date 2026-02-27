@@ -14,7 +14,7 @@ export async function GET() {
             where: { date: { gte: today } }
         });
 
-        const presentToday = todayAttendance.filter(a => a.status === 'Present').length;
+        const presentToday = todayAttendance.filter((a: any) => a.status === 'Present').length;
         const todayAttendancePercentage = todayAttendance.length > 0
             ? Math.round((presentToday / todayAttendance.length) * 100)
             : 0;
@@ -28,7 +28,7 @@ export async function GET() {
         });
 
         const trendMap: Record<string, { present: number; total: number }> = {};
-        lastMonthAttendance.forEach(a => {
+        lastMonthAttendance.forEach((a: any) => {
             const d = a.date.toISOString().split('T')[0];
             if (!trendMap[d]) trendMap[d] = { present: 0, total: 0 };
             trendMap[d].total++;
@@ -44,7 +44,7 @@ export async function GET() {
         const allAtt = await prisma.attendance.findMany({ include: { student: true } });
         const studentStats: Record<string, { name: string; roll: string; total: number; present: number }> = {};
 
-        allAtt.forEach(a => {
+        allAtt.forEach((a: any) => {
             if (!studentStats[a.student_id]) {
                 studentStats[a.student_id] = { name: a.student.name, roll: a.student.roll_number, total: 0, present: 0 };
             }
@@ -63,10 +63,10 @@ export async function GET() {
         // Department wise
         const teacherData = await prisma.teacher.findMany();
         const deptMap: Record<string, string> = {};
-        teacherData.forEach(t => { deptMap[t.teacher_id] = t.department; });
+        teacherData.forEach((t: any) => { deptMap[t.teacher_id] = t.department; });
 
         const deptStats: Record<string, { present: number; total: number }> = {};
-        allAtt.forEach(a => {
+        allAtt.forEach((a: any) => {
             const dept = deptMap[a.teacher_id] || 'General';
             if (!deptStats[dept]) deptStats[dept] = { present: 0, total: 0 };
             deptStats[dept].total++;

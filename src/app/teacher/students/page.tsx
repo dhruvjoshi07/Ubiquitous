@@ -20,7 +20,7 @@ export default function StudentsPage() {
     const [submitting, setSubmitting] = useState(false);
     const [form, setForm] = useState({ name: '', roll_number: '', course: '', year: '', section: '' });
 
-    const [teacherId, setTeacherId] = useState<string>('');
+    const [, setTeacherId] = useState<string>('');
     const [schedules, setSchedules] = useState<{ section: string }[]>([]);
     const [filterSection, setFilterSection] = useState<string>('All');
 
@@ -48,7 +48,7 @@ export default function StudentsPage() {
                 if (dataSch.success && dataSch.schedules) {
                     setSchedules(dataSch.schedules);
                     // auto-select first section for form if exists
-                    const unq = Array.from(new Set(dataSch.schedules.map((s: any) => s.section)));
+                    const unq = Array.from(new Set(dataSch.schedules.map((s: { section: string }) => s.section)));
                     if (unq.length > 0 && !form.section) {
                         setForm(prev => ({ ...prev, section: unq[0] as string }));
                     }
@@ -60,6 +60,7 @@ export default function StudentsPage() {
     useEffect(() => {
         fetchContextAndSchedules();
         fetchStudents();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleSearch = (e: React.FormEvent) => {
@@ -89,6 +90,7 @@ export default function StudentsPage() {
                 alert(data.error);
             }
         } catch (err) {
+            console.error(err);
             alert('Failed to add student');
         }
         setSubmitting(false);

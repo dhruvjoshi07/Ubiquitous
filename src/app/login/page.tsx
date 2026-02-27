@@ -191,7 +191,7 @@ function LoginContent() {
                 }}>
                     <Quote size={40} color="rgba(255,255,255,0.4)" style={{ marginBottom: '1rem' }} />
                     <h2 style={{ fontSize: '2rem', fontWeight: 300, lineHeight: 1.4, marginBottom: '1rem' }}>
-                        "Attendance reflects <strong style={{ fontWeight: 800 }}>discipline.</strong> Architecture shapes behavior."
+                        &quot;Attendance reflects <strong style={{ fontWeight: 800 }}>discipline.</strong> Architecture shapes behavior.&quot;
                     </h2>
                     <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <BookOpen size={16} /> Ubiquitous Smart Terminal

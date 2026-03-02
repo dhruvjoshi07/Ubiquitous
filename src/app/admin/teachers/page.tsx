@@ -19,8 +19,7 @@ export default function TeachersPage() {
             const res = await fetch('/api/admin/teachers');
             const data = await res.json();
             setTeachers(Array.isArray(data) ? data : []);
-        } catch (err) {
-            console.error(err);
+        } catch {
         } finally {
             setLoading(false);
         }
@@ -40,7 +39,7 @@ export default function TeachersPage() {
             } else {
                 alert('Failed to delete teacher');
             }
-        } catch (err) {
+        } catch {
             alert('Error occurred while deleting teacher');
         }
     };

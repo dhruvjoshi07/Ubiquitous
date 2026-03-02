@@ -28,8 +28,8 @@ export async function GET(req: Request) {
             },
         });
 
-        const presentToday = todayAttendance.filter((a: any) => a.status === 'Present').length;
-        const absentToday = todayAttendance.filter((a: any) => a.status === 'Absent').length;
+        const presentToday = todayAttendance.filter((a: { status: string }) => a.status === 'Present').length;
+        const absentToday = todayAttendance.filter((a: { status: string }) => a.status === 'Absent').length;
 
         // 3. Attendance Percentage Chart (last 7 days grouped by date)
         const sevenDaysAgo = new Date();
@@ -45,7 +45,7 @@ export async function GET(req: Request) {
         });
 
         const chartDataMap: Record<string, { present: number; absent: number }> = {};
-        recentAttendance.forEach((a: any) => {
+        recentAttendance.forEach((a: { date: Date, status: string }) => {
             const dateStr = a.date.toISOString().split('T')[0];
             if (!chartDataMap[dateStr]) chartDataMap[dateStr] = { present: 0, absent: 0 };
             if (a.status === 'Present') chartDataMap[dateStr].present++;
@@ -70,7 +70,7 @@ export async function GET(req: Request) {
 
         const studentStats: Record<string, { name: string; roll: string; total: number; present: number }> = {};
 
-        teacherAllAttendance.forEach((a: any) => {
+        teacherAllAttendance.forEach((a: { student_id: string, status: string, student: { name: string, roll_number: string } }) => {
             if (!studentStats[a.student_id]) {
                 studentStats[a.student_id] = { name: a.student.name, roll: a.student.roll_number, total: 0, present: 0 };
             }
@@ -98,7 +98,7 @@ export async function GET(req: Request) {
                 riskyStudents
             }
         });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to fetch dashboard stats' }, { status: 500 });
     }
 }

@@ -34,7 +34,7 @@ export default function SchedulePage() {
             if (data.success && data.user) {
                 setTeacherId(data.user.id);
             }
-        } catch (err) { console.error(err); }
+        } catch { }
     };
 
     const fetchSchedules = async (tid: string) => {
@@ -45,7 +45,7 @@ export default function SchedulePage() {
             if (data.success) {
                 setSchedules(data.schedules);
             }
-        } catch (err) { console.error(err); }
+        } catch { }
         setLoading(false);
     };
 
@@ -82,8 +82,7 @@ export default function SchedulePage() {
             } else {
                 alert(data.error);
             }
-        } catch (err) {
-            console.error(err);
+        } catch {
             alert('Failed to add schedule');
         }
         setSubmitting(false);
@@ -96,8 +95,7 @@ export default function SchedulePage() {
             if (res.ok) {
                 setSchedules(schedules.filter(s => s.schedule_id !== id));
             }
-        } catch (err) {
-            console.error(err);
+        } catch {
             alert('Failed to delete');
         }
     };

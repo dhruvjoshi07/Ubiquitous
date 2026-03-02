@@ -29,7 +29,7 @@ export default function TeacherDashboard() {
                     setStats(data.stats);
                 }
             }
-        } catch (err) { console.error(err); }
+        } catch { }
         setLoading(false);
     };
 

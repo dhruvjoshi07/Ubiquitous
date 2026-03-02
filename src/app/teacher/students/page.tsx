@@ -30,8 +30,7 @@ export default function StudentsPage() {
             const res = await fetch(`/api/teacher/students${query ? `?q=${query}` : ''}`);
             const data = await res.json();
             setStudents(Array.isArray(data) ? data : []);
-        } catch (err) {
-            console.error(err);
+        } catch {
         } finally {
             setLoading(false);
         }
@@ -89,8 +88,7 @@ export default function StudentsPage() {
             } else {
                 alert(data.error);
             }
-        } catch (err) {
-            console.error(err);
+        } catch {
             alert('Failed to add student');
         }
         setSubmitting(false);

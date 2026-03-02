@@ -21,7 +21,7 @@ export async function GET(req: Request) {
         }
 
         return NextResponse.json(students);
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed' }, { status: 500 });
     }
 }
@@ -44,7 +44,7 @@ export async function POST(req: Request) {
         });
 
         return NextResponse.json({ success: true, student });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed' }, { status: 500 });
     }
 }

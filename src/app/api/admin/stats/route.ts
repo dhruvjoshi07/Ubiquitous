@@ -9,7 +9,7 @@ export async function GET() {
         ]);
 
         return NextResponse.json({ success: true, stats: { teachers, students } });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed' }, { status: 500 });
     }
 }

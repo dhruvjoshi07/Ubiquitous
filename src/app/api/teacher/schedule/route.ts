@@ -19,7 +19,7 @@ export async function GET(req: Request) {
         });
 
         return NextResponse.json({ success: true, schedules });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed' }, { status: 500 });
     }
 }
@@ -44,7 +44,7 @@ export async function POST(req: Request) {
         });
 
         return NextResponse.json({ success: true, schedule });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed' }, { status: 500 });
     }
 }

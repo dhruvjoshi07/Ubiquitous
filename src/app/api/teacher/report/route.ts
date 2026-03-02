@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
-import { cookies } from 'next/headers';
 
 export async function GET(req: Request) {
     try {
@@ -22,10 +21,10 @@ export async function GET(req: Request) {
             }
         });
 
-        const report = students.map((student: any) => {
+        const report = students.map((student: { student_id: string, name: string, roll_number: string, attendance: unknown[] }) => {
             const totalClasses = student.attendance.length;
-            const presentClasses = student.attendance.filter((a: any) => a.status === 'Present').length;
-            const absentClasses = student.attendance.filter((a: any) => a.status === 'Absent').length;
+            const presentClasses = student.attendance.filter((a: { status: string }) => a.status === 'Present').length;
+            const absentClasses = student.attendance.filter((a: { status: string }) => a.status === 'Absent').length;
             const attendancePercentage = totalClasses === 0 ? 0 : Math.round((presentClasses / totalClasses) * 100);
 
             return {
@@ -40,7 +39,7 @@ export async function GET(req: Request) {
         });
 
         return NextResponse.json({ success: true, report });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to generate report' }, { status: 500 });
     }
 }

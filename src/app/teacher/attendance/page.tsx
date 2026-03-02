@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { BookOpen, Users } from 'lucide-react';
+import { Users } from 'lucide-react';
 
 interface Student {
     student_id: string;
@@ -39,8 +39,7 @@ export default function MarkAttendance() {
             if (data.success && data.user) {
                 setTeacherId(data.user.id);
             }
-        } catch (e) {
-            console.error(e);
+        } catch {
         }
     };
 
@@ -51,8 +50,7 @@ export default function MarkAttendance() {
             if (data.success && data.schedules) {
                 setSchedules(data.schedules);
             }
-        } catch (e) {
-            console.error(e);
+        } catch {
         }
     };
 
@@ -83,8 +81,7 @@ export default function MarkAttendance() {
                 }
                 setAttendanceState(newState);
             }
-        } catch (err) {
-            console.error(err);
+        } catch {
         } finally {
             setLoading(false);
         }

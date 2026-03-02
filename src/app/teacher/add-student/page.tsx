@@ -39,7 +39,7 @@ export default function AddStudent() {
             setMessage({ type: 'success', text: 'Student added successfully!' });
             setFormData({ name: '', roll_number: '', course: '', year: '', section: '' });
             setTimeout(() => router.push('/teacher/students'), 1500);
-        } catch (err) {
+        } catch {
             setMessage({ type: 'error', text: (err as Error).message });
         } finally {
             setLoading(false);

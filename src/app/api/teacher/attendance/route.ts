@@ -29,13 +29,14 @@ export async function GET(req: Request) {
         });
 
         return NextResponse.json(attendances);
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed' }, { status: 500 });
     }
 }
 
 export async function POST(req: Request) {
-    const token = (await cookies()).get('token')?.value;
+    const cookieStore = await cookies();
+    const token = cookieStore.get('token')?.value;
     // Actually, we could extract role/id from token. Instead, we can let client pass it, or read from token payload.
     // For safety, assuming client passes records.
 
@@ -71,7 +72,7 @@ export async function POST(req: Request) {
         }
 
         return NextResponse.json({ success: true, message: 'Attendance Saved Successfully' });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed' }, { status: 500 });
     }
 }

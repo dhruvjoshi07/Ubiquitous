@@ -13,7 +13,7 @@ export async function GET() {
             },
         });
         return NextResponse.json(teachers);
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to fetch teachers' }, { status: 500 });
     }
 }
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
         });
 
         return NextResponse.json({ success: true, teacher });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to create teacher' }, { status: 500 });
     }
 }

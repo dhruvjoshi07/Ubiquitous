@@ -29,7 +29,7 @@ export default function AttendanceReport() {
             if (data.success && data.user) {
                 setTeacherId(data.user.id);
             }
-        } catch (e) { console.error(e); }
+        } catch { }
     };
 
     const fetchReport = async (tid: string) => {
@@ -40,7 +40,7 @@ export default function AttendanceReport() {
             if (data.success) {
                 setReport(data.report);
             }
-        } catch (err) { console.error(err); }
+        } catch { }
         setLoading(false);
     };
 

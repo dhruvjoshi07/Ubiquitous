@@ -21,7 +21,7 @@ export async function middleware(request: NextRequest) {
             if (decodedPayload.exp * 1000 > Date.now()) {
                 userRole = decodedPayload.role;
             }
-        } catch (e) {
+        } catch {
             // invalid token format
         }
     }

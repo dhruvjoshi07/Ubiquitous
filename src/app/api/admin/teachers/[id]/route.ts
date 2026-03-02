@@ -2,9 +2,10 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import bcrypt from 'bcryptjs';
 
-export async function PUT(req: Request, { params }: { params: Promise<{ id: string }> }) {
+export async function PUT(req: Request, context: unknown) {
     try {
-        const { id } = await params;
+        const params = await context.params;
+        const { id } = params;
         const body = await req.json();
 
         const dataToUpdate: Record<string, string> = {
@@ -23,21 +24,22 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
         });
 
         return NextResponse.json({ success: true, teacher: updatedTeacher });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to update teacher' }, { status: 500 });
     }
 }
 
-export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {
+export async function DELETE(req: Request, context: unknown) {
     try {
-        const { id } = await params;
+        const params = await context.params;
+        const { id } = params;
 
         await prisma.teacher.delete({
             where: { teacher_id: id },
         });
 
         return NextResponse.json({ success: true });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to delete teacher' }, { status: 500 });
     }
 }

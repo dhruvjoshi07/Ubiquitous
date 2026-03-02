@@ -35,7 +35,7 @@ function LoginContent() {
             }
 
             router.push(`/${role}/dashboard`);
-        } catch (err) {
+        } catch {
             setError((err as Error).message);
         } finally {
             setLoading(false);

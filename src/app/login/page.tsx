@@ -35,8 +35,8 @@ function LoginContent() {
             }
 
             router.push(`/${role}/dashboard`);
-        } catch {
-            setError((err as Error).message);
+        } catch (err: any) {
+            setError(err.message || 'An error occurred');
         } finally {
             setLoading(false);
         }

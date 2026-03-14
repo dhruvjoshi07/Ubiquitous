@@ -2,10 +2,9 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import bcrypt from 'bcryptjs';
 
-export async function PUT(req: Request, context: unknown) {
+export async function PUT(req: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
-        const params = await context.params;
-        const { id } = params;
+        const { id } = await params;
         const body = await req.json();
 
         const dataToUpdate: Record<string, string> = {
@@ -29,10 +28,9 @@ export async function PUT(req: Request, context: unknown) {
     }
 }
 
-export async function DELETE(req: Request, context: unknown) {
+export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
-        const params = await context.params;
-        const { id } = params;
+        const { id } = await params;
 
         await prisma.teacher.delete({
             where: { teacher_id: id },

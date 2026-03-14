@@ -21,10 +21,10 @@ export async function GET(req: Request) {
             }
         });
 
-        const report = students.map((student: { student_id: string, name: string, roll_number: string, attendance: unknown[] }) => {
+        const report = students.map((student) => {
             const totalClasses = student.attendance.length;
-            const presentClasses = student.attendance.filter((a: { status: string }) => a.status === 'Present').length;
-            const absentClasses = student.attendance.filter((a: { status: string }) => a.status === 'Absent').length;
+            const presentClasses = student.attendance.filter((a) => a.status === 'Present').length;
+            const absentClasses = student.attendance.filter((a) => a.status === 'Absent').length;
             const attendancePercentage = totalClasses === 0 ? 0 : Math.round((presentClasses / totalClasses) * 100);
 
             return {

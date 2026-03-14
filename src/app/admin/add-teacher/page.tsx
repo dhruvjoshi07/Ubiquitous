@@ -38,7 +38,7 @@ export default function AddTeacher() {
             setMessage({ type: 'success', text: 'Teacher created successfully!' });
             setFormData({ name: '', email: '', department: '', password: '' });
             setTimeout(() => router.push('/admin/teachers'), 1500);
-        } catch {
+        } catch (err) {
             setMessage({ type: 'error', text: (err as Error).message });
         } finally {
             setLoading(false);
